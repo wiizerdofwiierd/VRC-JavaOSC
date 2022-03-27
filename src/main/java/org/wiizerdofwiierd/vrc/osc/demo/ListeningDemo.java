@@ -78,7 +78,7 @@ public final class ListeningDemo implements OscDemo{
 		}
 		
 		// Create a simple listener that prints a message when the value changes
-		// Note that we could use either VRCAnyParameterListener OR VRCSingleParameterListener<Object>
+		// Note that we could use either VRCAnyParameterListener OR VRCAvatarParameterListener<Object>
 		VRCAnyParameterListener listener = (event) -> {
 			System.out.printf("Message received: %s = %s\n", event.getParameter().getFullPath(), event.getNewValue());
 		};

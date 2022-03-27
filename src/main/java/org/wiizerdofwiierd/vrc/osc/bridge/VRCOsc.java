@@ -13,7 +13,6 @@ import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameter;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameters;
 import org.wiizerdofwiierd.vrc.osc.listener.VRCAvatarParameterListener;
 import org.wiizerdofwiierd.vrc.osc.listener.VRCAvatarParameterStore;
-import org.wiizerdofwiierd.vrc.osc.listener.VRCSingleParameterListener;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -176,7 +175,6 @@ public class VRCOsc{
 	 * @param listener The {@link VRCAvatarParameterListener} to receive events
 	 * @param target The {@link VRCAvatarParameter} to listen for.
 	 * @param <T> The type corresponding to the given avatar parameter
-	 * @see VRCSingleParameterListener
 	 * @see #registerListener(VRCAvatarParameterListener, String)
 	 */
 	public <T> void registerListener(VRCAvatarParameterListener<T> listener, @Nullable VRCAvatarParameter<T> target){

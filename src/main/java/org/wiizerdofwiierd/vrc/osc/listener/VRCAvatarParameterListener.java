@@ -7,7 +7,6 @@ import org.wiizerdofwiierd.vrc.osc.bridge.event.VRCAvatarParameterChangeEvent;
 
  * @param <T> Type of the parameter(s) being listened to
  * @see VRCAnyParameterListener
- * @see VRCSingleParameterListener
  */
 public interface VRCAvatarParameterListener<T>{
 	

@@ -6,7 +6,7 @@ import org.wiizerdofwiierd.vrc.osc.bridge.VRCOsc;
 import org.wiizerdofwiierd.vrc.osc.bridge.event.VRCAvatarParameterChangeEvent;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameter;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameters;
-import org.wiizerdofwiierd.vrc.osc.listener.VRCSingleParameterListener;
+import org.wiizerdofwiierd.vrc.osc.listener.VRCAvatarParameterListener;
 
 import java.io.IOException;
 
@@ -53,14 +53,14 @@ public class ReadmeTest{
 	
 	@Test
 	public void usage_listenSingle_compiles(){
-		osc.registerListener((VRCSingleParameterListener<Integer>) event -> {
+		osc.registerListener((VRCAvatarParameterListener<Integer>) event -> {
 			System.out.println("MyIntParameter changed to: " + event.getNewValue());
 		}, "MyIntParameter");
 	}
 	
 	@Test
 	public void usage_listenerClass_compiles(){
-		class MyIntParameterListener implements VRCSingleParameterListener<Integer>{
+		class MyIntParameterListener implements VRCAvatarParameterListener<Integer>{
 
 			@Override
 			public void onParameterChanged(VRCAvatarParameterChangeEvent<Integer> event){

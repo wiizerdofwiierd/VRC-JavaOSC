@@ -93,14 +93,14 @@ osc.registerListener(event -> System.out.println(event.getNewValue());
 
 To listen for **a specific parameter**, use the following syntax:
 ```Java
-osc.registerListener((VRCSingleParameterListener<Integer>) event -> {
+osc.registerListener((VRCAvatarParameterListener<Integer>) event -> {
     System.out.println("MyIntParameter changed to: " + event.getNewValue());
 }, "MyIntParameter");
 ```
 Of course, you can also create a separate class for your listener. Just make sure it implements the 
-`VRCSingleParameterListener<T>` interface:
+`VRCAvatarParameterListener<T>` interface:
 ```Java
-public class MyIntParameterListener implements VRCSingleParameterListener<Integer>{
+public class MyIntParameterListener implements VRCAvatarParameterListener<Integer>{
 
     @Override
     public void onParameterChanged(VRCAvatarParameterChangeEvent<Integer> event){
