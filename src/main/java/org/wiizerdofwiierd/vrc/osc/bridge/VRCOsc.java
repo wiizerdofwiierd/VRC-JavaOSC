@@ -11,7 +11,6 @@ import com.sun.istack.internal.Nullable;
 import org.wiizerdofwiierd.vrc.osc.bridge.event.VRCAvatarParameterChangeEvent;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameter;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameters;
-import org.wiizerdofwiierd.vrc.osc.listener.VRCAnyParameterListener;
 import org.wiizerdofwiierd.vrc.osc.listener.VRCAvatarParameterListener;
 import org.wiizerdofwiierd.vrc.osc.listener.VRCAvatarParameterStore;
 import org.wiizerdofwiierd.vrc.osc.listener.VRCSingleParameterListener;
@@ -118,56 +117,6 @@ public class VRCOsc{
 	}
 
 	/**
-	 * Registers a listener that listens for changes to all avatar parameters. 
-	 * To listen for a specific avatar parameter, use {@link #registerListener(VRCSingleParameterListener, String)} instead
-	 * 
-	 * @param listener The {@link VRCAnyParameterListener} to receive events
-	 * @see VRCAnyParameterListener
-	 * @see #registerListener(VRCSingleParameterListener, String)
-	 * @see #registerListener(VRCSingleParameterListener, VRCAvatarParameter) 
-	 */
-	public void registerListener(VRCAnyParameterListener listener){
-		registerListener(listener, null);
-	}
-
-	/**
-	 * <p>
-	 *     Registers a listener that listens for changes to a specific avatar parameter. If <code>target</code>
-	 *     is <code>null</code>, the listener will receive events when any avatar parameter changes.  
-	 * </p>
-	 * <br>
-	 * <p>
-	 *     The listener's type should match that of the parameter given. For example,
-	 *     if you provide the value <code>"AFK"</code> for <code>target</code>,
-	 *     you will need to provide a <code>VRCSingleParameterListener&lt;Boolean&gt;</code>
-	 * </p>
-	 * 
-	 * @param listener The {@link VRCSingleParameterListener} to receive events
-	 * @param target Name of the avatar parameter to listen for. Use <code>null</code> for any avatar parameter
-	 * @param <T> The type corresponding to the given avatar parameter
-	 * @see VRCSingleParameterListener  
-	 */
-	public <T> void registerListener(VRCSingleParameterListener<T> listener, @Nullable String target){
-		registerListener((VRCAvatarParameterListener<VRCAvatarParameterChangeEvent<T>>) listener, target);
-	}
-
-	/**
-	 * Registers a listener that listens for changes to a specific avatar parameter. If <code>target</code>
-	 * is <code>null</code>, the listener will receive events when any avatar parameter changes.
-	 * <br>
-	 * To register a listener using the parameter's name instead, use {@link #registerListener(VRCSingleParameterListener, String)}
-	 * 
-	 * @param listener The {@link VRCSingleParameterListener} to receive events
-	 * @param target The {@link VRCAvatarParameter} to listen for.
-	 * @param <T> The type corresponding to the given avatar parameter
-	 * @see VRCSingleParameterListener
-	 * @see #registerListener(VRCSingleParameterListener, String) 
-	 */
-	public <T> void registerListener(VRCSingleParameterListener<T> listener, @Nullable VRCAvatarParameter<T> target){
-		registerListener((VRCAvatarParameterListener<VRCAvatarParameterChangeEvent<T>>) listener, target.getName());
-	}
-
-	/**
 	 * Registers a listener that listens for changes to avatar parameters. 
 	 * If a <code>target</code> is provided, the listener will only receive events for the parameter matching the given target.
 	 * If <code>target</code> is <code>null</code>, the listener will receive events for any parameter that changes
@@ -175,9 +124,8 @@ public class VRCOsc{
 	 * @param listener The {@link VRCAvatarParameterListener} to receive events
 	 * @param target Name of the avatar parameter to listen for. Use <code>null</code> for any avatar parameter
 	 * @param <T> The type corresponding to the given avatar parameter
-	 * @param <L> The type of the listener
 	 */
-	public <T, L extends VRCAvatarParameterListener<VRCAvatarParameterChangeEvent<T>>> void registerListener(L listener,  @Nullable String target){
+	public <T> void registerListener(VRCAvatarParameterListener<T> listener,  @Nullable String target){
 		OSCMessageListener oscListener = (event) -> {
 			try{
 				OSCMessage message = event.getMessage();
@@ -220,14 +168,42 @@ public class VRCOsc{
 	}
 
 	/**
+	 * Registers a listener that listens for changes to a specific avatar parameter. If <code>target</code>
+	 * is <code>null</code>, the listener will receive events when any avatar parameter changes.
+	 * <br>
+	 * To register a listener using the parameter's name instead, use {@link #registerListener(VRCAvatarParameterListener, String)}
+	 *
+	 * @param listener The {@link VRCAvatarParameterListener} to receive events
+	 * @param target The {@link VRCAvatarParameter} to listen for.
+	 * @param <T> The type corresponding to the given avatar parameter
+	 * @see VRCSingleParameterListener
+	 * @see #registerListener(VRCAvatarParameterListener, String)
+	 */
+	public <T> void registerListener(VRCAvatarParameterListener<T> listener, @Nullable VRCAvatarParameter<T> target){
+		registerListener(listener, target.getName());
+	}
+
+	/**
+	 * Registers a listener that listens for changes to all avatar parameters. 
+	 * To listen for a specific avatar parameter, use {@link #registerListener(VRCAvatarParameterListener, String)} instead
+	 *
+	 * @param listener The {@link VRCAvatarParameterListener} to receive events
+	 * @see VRCAvatarParameterListener
+	 * @see #registerListener(VRCAvatarParameterListener, String)
+	 * @see #registerListener(VRCAvatarParameterListener, VRCAvatarParameter)
+	 */
+	public <T> void registerListener(VRCAvatarParameterListener<T> listener){
+		registerListener(listener, (String) null);
+	}
+
+	/**
 	 * Unregister a listener. The listener will no longer receive events after it is unregistered
 	 * 
 	 * @param listener The {@link VRCAvatarParameterListener} to unregister
 	 * @param <T> The type corresponding to the parameters listened to by the listener
-	 * @param <L> The type of the listener
 	 * @return <code>true</code> if the listener was removed, <code>false</code> if the listener was not registered
 	 */
-	public <T, L extends VRCAvatarParameterListener<VRCAvatarParameterChangeEvent<T>>> boolean unregisterListener(L listener){
+	public <T> boolean unregisterListener(VRCAvatarParameterListener<T> listener){
 		if(!oscListeners.containsKey(listener)){
 			return false;
 		}
