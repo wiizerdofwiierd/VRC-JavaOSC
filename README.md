@@ -49,7 +49,7 @@ For example: `osc.setParameterValue("MyIntParameter", 0)`
 For communicating the other way, you'll need to register a *listener*. The following is an example of registering a 
 simple anonymous listener which will print a message to `System.out` when **any parameter** changes:
 ```Java
-osc.registerParameterListener(event -> System.out.println(event.getNewValue());
+osc.registerListener(event -> System.out.println(event.getNewValue());
 ```
 
 To listen for **a specific parameter**, use the following syntax:
@@ -90,15 +90,15 @@ osc.getParameterValue("MyIntParameter", 0);
 A representation of every default parameter is provided by the `VRCAvatarParameters` class. You can use these instances
 to get the values of default parameters, and the types will be taken care of for you!
 ```Java
-boolean isPlayerAfk = osc.getParameterValue(VRCAvatarParameters.AFK);
-int playerTrackingType = osc.getParameterValue(VRCAvatarParameters.TRACKING_TYPE);
-float gestureLeftWeight = osc.getParameterValue(VRCAvatarParameters.GESTURE_LEFT_WEIGHT);
+Boolean isPlayerAfk = osc.getParameterValue(VRCAvatarParameters.AFK);
+Integer playerTrackingType = osc.getParameterValue(VRCAvatarParameters.TRACKING_TYPE);
+Float gestureLeftWeight = osc.getParameterValue(VRCAvatarParameters.GESTURE_LEFT_WEIGHT);
 ```
 However, you can extend this to your own parameters as well!
 ```Java
 public static final VRCAvatarParameter<Integer> MY_INT_PARAMETER = VRCAvatarParameters.create("MyIntParameter");
 ...
-int myIntParameter = osc.getParameterValue(MY_INT_PARAMETER);
+Integer myIntParameter = osc.getParameterValue(MY_INT_PARAMETER);
 osc.setParameterValue(MY_INT_PARAMETER, 1); // Also supports setting the value
 ```
 
