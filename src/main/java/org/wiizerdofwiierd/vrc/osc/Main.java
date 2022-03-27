@@ -1,5 +1,8 @@
 package org.wiizerdofwiierd.vrc.osc;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.wiizerdofwiierd.vrc.osc.bridge.VRCOsc;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameter;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameters;
@@ -13,6 +16,10 @@ public class Main{
 	private static VRCOsc osc;
 
 	public static void main(String[] args){
+		// Initialize logger and set level to Info
+		BasicConfigurator.configure();
+		Logger.getRootLogger().setLevel(Level.INFO);
+		
 		try{
 			osc = VRCOsc.builder().withCacheEnabled(true).build();
 		}
