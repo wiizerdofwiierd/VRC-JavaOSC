@@ -53,9 +53,7 @@ public class ReadmeTest{
 	
 	@Test
 	public void usage_listenSingle_compiles(){
-		osc.registerListener((VRCAvatarParameterListener<Integer>) event -> {
-			System.out.println("MyIntParameter changed to: " + event.getNewValue());
-		}, "MyIntParameter");
+		osc.registerListener(event -> System.out.println("MyIntParameter changed to: " + event.getNewValue()), "MyIntParameter");
 	}
 	
 	@Test

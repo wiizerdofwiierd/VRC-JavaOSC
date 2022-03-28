@@ -90,11 +90,9 @@ simple anonymous listener which will print a message to `System.out` when **any 
 osc.registerListener(event -> System.out.println(event.getNewValue());
 ```
 
-To listen for **a specific parameter**, use the following syntax:
+To listen for **a specific parameter**, you can specify the parameter's name after the listener:
 ```Java
-osc.registerListener((VRCAvatarParameterListener<Integer>) event -> {
-    System.out.println("MyIntParameter changed to: " + event.getNewValue());
-}, "MyIntParameter");
+osc.registerListener(event -> System.out.println("MyIntParameter changed to: " + event.getNewValue()), "MyIntParameter");
 ```
 Of course, you can also create a separate class for your listener. Just make sure it implements the 
 `VRCAvatarParameterListener<T>` interface:
@@ -141,7 +139,7 @@ osc.setParameterValue(MY_INT_PARAMETER, 1); // Also supports setting the value
 ```
 
 ## Planned features
-- Listening to parameters that *aren't* sent to the `/avatar/parameters/` path
+- Listening to messages that *aren't* sent to the `/avatar/parameters/` path
 
 ## Want to support my work? ♥
 If you like what I've made, please consider supporting me on Ko-fi!  
