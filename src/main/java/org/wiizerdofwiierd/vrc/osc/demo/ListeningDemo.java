@@ -1,13 +1,13 @@
 package org.wiizerdofwiierd.vrc.osc.demo;
 
-import org.wiizerdofwiierd.vrc.osc.listener.VRCAnyParameterListener;
+import org.wiizerdofwiierd.vrc.osc.listener.VRCAvatarParameterListener;
 
 import java.util.HashMap;
 
 public final class ListeningDemo implements OscDemo{
 
 	private Demo context;
-	private HashMap<String, VRCAnyParameterListener> listeners;
+	private HashMap<String, VRCAvatarParameterListener<Object>> listeners;
 	
 	@Override
 	public void start(Demo context){
@@ -78,8 +78,7 @@ public final class ListeningDemo implements OscDemo{
 		}
 		
 		// Create a simple listener that prints a message when the value changes
-		// Note that we could use either VRCAnyParameterListener OR VRCAvatarParameterListener<Object>
-		VRCAnyParameterListener listener = (event) -> {
+		VRCAvatarParameterListener<Object> listener = (event) -> {
 			System.out.printf("Message received: %s = %s\n", event.getParameter().getFullPath(), event.getNewValue());
 		};
 
@@ -103,7 +102,7 @@ public final class ListeningDemo implements OscDemo{
 		}
 		
 		// Retrieve the listener from our map, unregister it from our OSC handler, and remove it from the map
-		VRCAnyParameterListener listener = this.listeners.get(name.toLowerCase());
+		VRCAvatarParameterListener<Object> listener = this.listeners.get(name.toLowerCase());
 		context.osc.unregisterListener(listener);
 		this.listeners.remove(name.toLowerCase());
 
@@ -112,7 +111,7 @@ public final class ListeningDemo implements OscDemo{
 	
 	private void unlistenAll(){
 		for(String key : this.listeners.keySet()){
-			VRCAnyParameterListener listener = this.listeners.get(key);
+			VRCAvatarParameterListener<Object> listener = this.listeners.get(key);
 			context.osc.unregisterListener(listener);
 		}
 		
