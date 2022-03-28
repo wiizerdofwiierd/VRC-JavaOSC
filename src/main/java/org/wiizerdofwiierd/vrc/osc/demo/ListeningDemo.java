@@ -56,7 +56,7 @@ public final class ListeningDemo implements OscDemo{
 	}
 	
 	private String listenParameter(String name){
-		String target = name.toLowerCase();
+		String target = name;
 		
 		// If we are already listening to this parameter, do nothing else
 		if(this.listeners.containsKey(target)){
