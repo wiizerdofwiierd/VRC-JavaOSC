@@ -29,6 +29,8 @@ public final class ListeningDemo implements OscDemo{
 	
 	@Override
 	public boolean processNextCommand(){
+		System.out.print("> ");
+		
 		String input = context.scanner.nextLine();
 		if(input.equalsIgnoreCase("exit")) return false;
 
