@@ -7,7 +7,6 @@ import com.illposed.osc.OSCSerializeException;
 import com.illposed.osc.messageselector.OSCPatternAddressMessageSelector;
 import com.illposed.osc.transport.udp.OSCPortIn;
 import com.illposed.osc.transport.udp.OSCPortOut;
-import com.sun.istack.internal.Nullable;
 import org.wiizerdofwiierd.vrc.osc.bridge.event.VRCAvatarParameterChangeEvent;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameter;
 import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameters;
@@ -124,7 +123,7 @@ public class VRCOsc{
 	 * @param target Name of the avatar parameter to listen for. Use <code>null</code> for any avatar parameter
 	 * @param <T> The type corresponding to the given avatar parameter
 	 */
-	public <T> void registerListener(VRCAvatarParameterListener<T> listener,  @Nullable String target){
+	public <T> void registerListener(VRCAvatarParameterListener<T> listener, String target){
 		OSCMessageListener oscListener = (event) -> {
 			try{
 				OSCMessage message = event.getMessage();
@@ -177,7 +176,7 @@ public class VRCOsc{
 	 * @param <T> The type corresponding to the given avatar parameter
 	 * @see #registerListener(VRCAvatarParameterListener, String)
 	 */
-	public <T> void registerListener(VRCAvatarParameterListener<T> listener, @Nullable VRCAvatarParameter<T> target){
+	public <T> void registerListener(VRCAvatarParameterListener<T> listener, VRCAvatarParameter<T> target){
 		registerListener(listener, target.getName());
 	}
 
