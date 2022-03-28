@@ -4,15 +4,12 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.wiizerdofwiierd.vrc.osc.bridge.VRCOsc;
-import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameter;
-import org.wiizerdofwiierd.vrc.osc.bridge.parameter.VRCAvatarParameters;
 import org.wiizerdofwiierd.vrc.osc.demo.Demo;
 
 import java.io.IOException;
 
 public class Main{
-
-	public static final VRCAvatarParameter<Integer> MY_INT_PARAMETER = VRCAvatarParameters.create("MyIntParameter");
+	
 	private static VRCOsc osc;
 
 	public static void main(String[] args){
