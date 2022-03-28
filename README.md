@@ -9,7 +9,7 @@ With this library, you can:
 - Get the last known value of an avatar parameter
 
 ## Adding to your project
-## Maven [![](https://jitpack.io/v/wiizerdofwiierd/VRC-JavaOSC.svg)](https://jitpack.io/#wiizerdofwiierd/VRC-JavaOSC)
+### Maven [![](https://jitpack.io/v/wiizerdofwiierd/VRC-JavaOSC.svg)](https://jitpack.io/#wiizerdofwiierd/VRC-JavaOSC)
 Firstly, make sure you have added jitpack to the repositories in your pom.xml:
 ```xml
 <repositories>
@@ -28,9 +28,9 @@ Then, add VRC-JavaOSC to your dependencies:
     <version>VERSION</version>
 </dependency>
 ```
-Where `VERSION` is either `latest`, or the tag (Such as `v1.0`)
+Where `VERSION` is either `latest`, or a specific version (such as `1.0`)
 
-## Gradle [![](https://jitpack.io/v/wiizerdofwiierd/VRC-JavaOSC.svg)](https://jitpack.io/#wiizerdofwiierd/VRC-JavaOSC)
+### Gradle [![](https://jitpack.io/v/wiizerdofwiierd/VRC-JavaOSC.svg)](https://jitpack.io/#wiizerdofwiierd/VRC-JavaOSC)
 Add the repository to your build.gradle:
 ```gradle
 allprojects {
@@ -43,12 +43,11 @@ allprojects {
 Then add the dependency:
 ```gradle
 dependencies {
-    implementation 'com.github.wiizerdofwiierd:VRC-JavaOSC:Tag'
+    implementation 'com.github.wiizerdofwiierd:VRC-JavaOSC:VERSION'
 }
 ```
 
 ## Jar
-***(Not yet available)***
 You can download the latest release [here](https://github.com/wiizerdofwiierd/VRC-JavaOSC/releases/latest) 
 
 ## Usage
