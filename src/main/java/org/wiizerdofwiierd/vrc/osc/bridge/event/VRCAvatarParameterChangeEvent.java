@@ -62,7 +62,7 @@ public class VRCAvatarParameterChangeEvent<T>{
 	
 	@Override
 	public String toString(){
-		return String.format("%s(parameter=%s, newValue=%s", 
+		return String.format("%s(parameter=%s, newValue=%s)", 
 				this.getClass().getSimpleName(), 
 				this.parameter, 
 				this.newValue);
